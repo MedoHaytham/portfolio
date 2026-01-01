@@ -36,7 +36,7 @@
 
 @layer components {
   .container {
-    @apply sm:w-[90%] lg:w-[85%] w-4/5 my-0 mx-auto;
+    @apply w-[90%] lg:w-[85%] xl:w-4/5 my-0 mx-auto;
   }
 
   .btn {

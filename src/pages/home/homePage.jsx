@@ -7,7 +7,7 @@ import { FaFacebook } from "react-icons/fa6";
 
 function HomePage() {
   return (
-    <div className='home h-auto pt-20 md:h-[100vh] md:pt-[100px] capitalize overflow-hidden'>
+    <div className='home h-auto py-20 md:h-[100vh] md:pt-[100px] capitalize overflow-hidden'>
       <div className="container h-full text-center relative">
         
         <h4 className='text-2xl'>hello I'm</h4>
@@ -23,9 +23,9 @@ function HomePage() {
           <img src="/assets/me.png" alt="" />
         </div>
 
-        <a href="#about" className='hidden md:block absolute right-[-35px] font-light rotate-90 origin-left'>Scroll Down</a>
+        <a href="#about" className='hidden md:block absolute bottom-[80px] right-[-35px] font-light rotate-90'>Scroll Down</a>
 
-        <div className="links hidden text-[25px] md:flex flex-col gap-5 items-center absolute bottom-[50px] after:content-[''] after:w-[1px] after:h-8 after:bg-primary ">
+        <div className="links text-[25px] flex md:flex-col justify-center items-center gap-5 md:absolute xl:bottom-[50px] md:after:content-[''] md:after:w-[1px] md:after:h-8 md:after:bg-primary">
           <a href="https://www.linkedin.com/in/mohamed-haytham-8a316015b" target='_blank'><FaLinkedin /></a>
           <a href="https://github.com/MedoHaytham" target='_blank'><FaGithub  /></a>
           <a href="https://www.facebook.com/medo.haytham.31" target='_blank'><FaFacebook /></a>
