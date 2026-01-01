@@ -1,3 +1,54 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap');
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer base {
+  body {
+    @apply font-bodyFont bg-bgColor text-white leading-[1.7] bg-[url(./src/assets/bg-texture.png)];
+  }
+
+  h1,h2,h3,h4,h5,h6 {
+    @apply font-medium;
+  }
+
+  h1 {
+    @apply text-[2.5rem];
+  }
+
+  section {
+    @apply sm:pt-20 lg:pt-24 pt-32;
+  }
+
+  a {
+    @apply text-primary no-underline transition-main duration-main ease-main;
+  }
+
+  a:hover {
+    @apply text-white;
+  }
+
+  img {
+    @apply w-full block object-cover;
+  }
+}
+
+@layer components {
+  .container {
+    @apply sm:w-[90%] lg:w-[85%] w-4/5 my-0 mx-auto;
+  }
+
+  .btn {
+    @apply w-max inline-block py-3 px-[1.2rem] rounded-[0.4rem] cursor-pointer border border-primary transition-main;
+  }
+
+  .btn:hover {
+    @apply bg-white text-bgColor border-transparent;
+  }
+
+  .btn-primary {
+    @apply bg-primary text-bgColor;
+  }
+}
+

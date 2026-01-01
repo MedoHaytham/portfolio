@@ -1,11 +1,22 @@
+import HomePage from './pages/home/homePage';
+import Navbar from './components/navbar/navbar';
+import AboutPage from './pages/about/aboutPage';
+import SkillsPage from './pages/skills/skillsPage';
+import ProjectsPage from './pages/projects/projectsPage';
+import ContactPage from './pages/contact/contactPage';
+import Footer from './components/footer/footer';
 
 function App() {
 
   return (
-    <>
-      <h1 className="text-3xl font-bold underline text-sky-500">
-        Hello world!
-      </h1>
+    <> 
+      <HomePage />
+      <Navbar />
+      <AboutPage />
+      <SkillsPage />
+      <ProjectsPage />
+      <ContactPage />
+      <Footer />
     </>
   )
 }
