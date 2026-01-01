@@ -15,7 +15,7 @@ function HomePage() {
         <h4 className='text-light'>Frontend Developer</h4>
 
         <div className='btns flex justify-center gap-5 mt-10'>
-          <a href="./src/assets/React Resume.pdf" download={true} className='btn'>Download CV</a>
+          <a href="/React Resume.pdf" download={true} className='btn'>Download CV</a>
           <a href="#" className='btn btn-primary'>Let's Talk</a>
         </div>
 
