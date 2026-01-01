@@ -6,7 +6,7 @@
 
 @layer base {
   body {
-    @apply font-bodyFont bg-bgColor text-white leading-[1.7] bg-[url(./src/assets/bg-texture.png)];
+    @apply font-bodyFont bg-bgColor text-white leading-[1.7] bg-[url(/assets/bg-texture.png)];
   }
 
   h1,h2,h3,h4,h5,h6 {
