@@ -1,9 +1,12 @@
 import React from 'react'
 import './projectsPage.css'
+import TopSection from '../../components/topSection'
 
 function ProjectsPage() {
   return (
-    <div>ProjectsPage</div>
+    <section className='projects' id='projects'>
+      <TopSection title={'Portfolio'} desc={'My Recent Work'}/>
+    </section>
   )
 }
 

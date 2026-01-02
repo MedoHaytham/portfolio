@@ -5,15 +5,17 @@ import SkillsPage from './pages/skills/skillsPage';
 import ProjectsPage from './pages/projects/projectsPage';
 import ContactPage from './pages/contact/contactPage';
 import Footer from './components/footer/footer';
+import ServicesPage from './pages/services/servicesPage';
 
 function App() {
 
   return (
     <> 
       <HomePage />
-      {/* <Navbar /> */}
+      <Navbar />
       <AboutPage />
       <SkillsPage />
+      {/* <ServicesPage /> */}
       <ProjectsPage />
       <ContactPage />
       <Footer />

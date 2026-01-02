@@ -14,7 +14,7 @@ function AboutPage() {
       <div className="container grid grid-cols-1 gap-0 lg:grid-cols-[35%_50%] lg:gap-[15%]">
         <div className="about-me w-[65%] md:w-1/2 lg:w-full mt-0 mx-auto mb-12 md:mt-8 md:mx-auto md:mb-16 lg:m-0 aspect-square rounded-[2rem] bg-[linear-gradient(45deg,transparent,#4db5ff,transparent)]">
           <div className="image rotate-[10deg] rounded-[2rem] bg-primary overflow-hidden transition-main-all hover:rotate-0">
-            <img src="./assets/Mogamed-half.png" alt="" />
+            <img src="./assets/Mogamed-half.png" alt="Mohamed Haytham" />
           </div>
         </div>
         <div className="content text-center md:text-start">
