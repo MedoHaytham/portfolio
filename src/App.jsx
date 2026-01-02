@@ -11,7 +11,7 @@ function App() {
   return (
     <> 
       <HomePage />
-      <Navbar />
+      {/* <Navbar /> */}
       <AboutPage />
       <SkillsPage />
       <ProjectsPage />

@@ -5,6 +5,10 @@
 @tailwind utilities;
 
 @layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+
   body {
     @apply font-bodyFont bg-bgColor text-white leading-[1.7] bg-[url(/assets/bg-texture.png)];
   }
@@ -39,8 +43,12 @@
     @apply w-[90%] lg:w-[85%] xl:w-4/5 my-0 mx-auto;
   }
 
+  .transition-main-all {
+    @apply transition-main duration-main ease-main;
+  }
+
   .btn {
-    @apply w-max inline-block py-3 px-[1.2rem] rounded-[0.4rem] cursor-pointer border border-primary transition-main;
+    @apply w-max inline-block py-3 px-[1.2rem] rounded-[0.4rem] cursor-pointer border border-primary transition-main-all;
   }
 
   .btn:hover {
