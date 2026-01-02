@@ -7,7 +7,7 @@ import { FaFacebook } from "react-icons/fa6";
 
 function HomePage() {
   return (
-    <div className='home h-auto pt-20 xl:pb-[82px] md:pt-[100px] capitalize'>
+    <div className='home h-auto pt-20 xl:pb-[160px]  md:pt-[100px] capitalize'>
       <div className="container h-full text-center relative">
         
         <h4 className='text-[25px]'>hello I'm</h4>
@@ -23,9 +23,9 @@ function HomePage() {
           <img src="/assets/me.png" alt="" />
         </div>
 
-        <a href="#about" className='hidden md:block absolute bottom-[-90px] right-[-35px] font-light rotate-90'>Scroll Down</a>
+        <a href="#about" className='hidden xl:block absolute bottom-[-90px] right-[-35px] font-light rotate-90'>Scroll Down</a>
 
-        <div className="links text-[25px] flex justify-center gap-5 md:flex-col md:items-center md:w-fit md:absolute md:bottom-[-120px] md:after:content-[''] md:after:w-[1px] md:after:h-8 md:after:bg-primary">
+        <div className="links text-[25px] flex justify-center gap-5 xl:flex-col md:items-center xl:absolute xl:bottom-[-120px] xl:after:content-[''] xl:after:w-[1px] xl:after:h-8 xl:after:bg-primary">
           <a href="https://www.linkedin.com/in/mohamed-haytham-8a316015b" target='_blank'><FaLinkedin /></a>
           <a href="https://github.com/MedoHaytham" target='_blank'><FaGithub /></a>
           <a href="https://www.facebook.com/medo.haytham.31" target='_blank'><FaFacebook /></a>
