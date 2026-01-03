@@ -16,9 +16,9 @@ function Footer() {
         <li><a href="#contact" className='text-bgColor'>Contact</a></li>
       </ul>
       <div className="socials flex justify-center gap-[15px] mb-[40px]">
-        <a href="#" className='text-white bg-bgColor p-3 rounded-[10px] flex border border-solid border-transparent hover:bg-transparent hover:border-bgColor hover:text-bgColor' target='_blank'><FaInstagram /></a>
-        <a href="#" className='text-white bg-bgColor p-3 rounded-[10px] flex border border-solid border-transparent hover:bg-transparent hover:border-bgColor hover:text-bgColor' target='_blank'><FaXTwitter /></a>
-        <a href="#" className='text-white bg-bgColor p-3 rounded-[10px] flex border border-solid border-transparent hover:bg-transparent hover:border-bgColor hover:text-bgColor' target='_blank'><FaThreads /></a>
+        <a href="https://www.instagram.com/medo_haytham/" className='text-white bg-bgColor p-3 rounded-[10px] flex border border-solid border-transparent hover:bg-transparent hover:border-bgColor hover:text-bgColor' target='_blank'><FaInstagram /></a>
+        <a href="https://x.com/Medo_Haitham0" className='text-white bg-bgColor p-3 rounded-[10px] flex border border-solid border-transparent hover:bg-transparent hover:border-bgColor hover:text-bgColor' target='_blank'><FaXTwitter /></a>
+        <a href="https://www.threads.com/@medo_haytham" className='text-white bg-bgColor p-3 rounded-[10px] flex border border-solid border-transparent hover:bg-transparent hover:border-bgColor hover:text-bgColor' target='_blank'><FaThreads /></a>
       </div>
       <small className='mb-16 text-bgColor'>&copy; <a href="#" className='text-white'>Mohamed Haytham</a> All rights reserved</small>
     </footer>
