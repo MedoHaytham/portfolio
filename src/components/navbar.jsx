@@ -86,7 +86,7 @@ function Navbar() {
             key={n.id}
             href={n.href} 
             onClick={() => setActive(n.href)} 
-            className={`p-[0.8rem] rounded-full text-light text-[1.1rem] hover:bg-black/30 ${active === n.href ? 'bg-primary': 'bg-transparent'}`}>
+            className={`p-[0.8rem] rounded-full text-light text-[1.1rem] lg:hover:bg-black/30 ${active === n.href ? 'bg-primary': 'bg-transparent'}`}>
               {n.icon}
           </a>
         ))
