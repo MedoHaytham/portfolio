@@ -58,5 +58,9 @@
   .btn-primary {
     @apply bg-primary text-bgColor;
   }
+
+  .card {
+    @apply flex flex-col items-center p-8 bg-bgVariant border border-solid border-transparent rounded-2xl hover:border-bgVariant hover:bg-transparent transition-main-all
+  }
 }
 

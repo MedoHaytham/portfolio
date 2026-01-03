@@ -16,7 +16,7 @@ function HomePage() {
 
         <div className='btns flex justify-center gap-5 mt-10'>
           <a href="/assets/React Resume.pdf" download={true} className='btn'>Download CV</a>
-          <a href="#" className='btn btn-primary'>Let's Talk</a>
+          <a href="#contact" className='btn btn-primary'>Let's Talk</a>
         </div>
 
         <div className="image max-w-full w-[300px] h-[380px] md:w-[330px] md:h-[400px] bg-gradient-to-t from-transparent to-primary rounded-t-[12rem] my-10 mx-auto pt-24 md:pt-20 pb-6 px-6 overflow-hidden">
