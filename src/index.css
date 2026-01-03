@@ -62,9 +62,22 @@
   .card {
     @apply flex flex-col items-center p-8 bg-bgVariant border border-solid border-transparent rounded-2xl hover:border-bgVariant hover:bg-transparent transition-main-all
   }
-
-  .Toastify {
-    @apply pt-0
-  }
 }
 
+
+.Toastify {
+  padding: 0 !important;
+  margin: 0 !important;
+}
+
+.Toastify__toast-container {
+  padding: 0 !important;
+  margin: 0 !important;
+}
+
+
+.Toastify__toast-container--top-right,
+.Toastify__toast-container--top-left,
+.Toastify__toast-container--top-center {
+  top: 20px !important;
+}

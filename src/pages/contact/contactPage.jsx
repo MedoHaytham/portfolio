@@ -1,4 +1,4 @@
-import React, { useRef } from 'react';
+import React, { useRef, useState } from 'react';
 import './contactPage.css'
 import TopSection from '../../components/topSection'
 import Card from '../../components/card'
@@ -7,6 +7,8 @@ import { RiMessengerLine } from "react-icons/ri";
 import { FaWhatsapp } from "react-icons/fa6";
 import emailjs from '@emailjs/browser';
 import { toast } from 'react-toastify';
+import Joi from 'joi-browser';
+
 
 const contactData = [
   {
@@ -35,13 +37,13 @@ const contactData = [
 
 function ContactPage() {
 
-  const form = useRef();
+  const formRef = useRef();
 
   const sendEmail = (e) => {
   e.preventDefault();
 
   emailjs
-    .sendForm('service_1pswwjp', 'template_05h25xq', form.current, {
+    .sendForm('service_1pswwjp', 'template_05h25xq', formRef.current, {
       publicKey: '50JsRbDXjEL9VcWXL',
     })
     .then(
@@ -53,6 +55,48 @@ function ContactPage() {
       },
     );
   }
+
+  const [form, setForm] = useState({
+    name: '',
+    email:'',
+    message: '',
+  });
+
+  let onChangeHandler = (e) => {
+    const {name, value} = e.target;
+    setForm((prev) => ({...prev, [name] : value}));
+  }
+
+  const schema = {
+    name: Joi.string().required(),
+    email: Joi.string().required(),
+    message: Joi.string().required()
+  }
+
+  const [errors, setErrors] = useState({});
+
+  const validate = () => {
+    const {error} = Joi.validate(form, schema, {abortEarly: false});
+    
+    const errors = {};
+    if(error) {
+      for(let i = 0; i < error.details.length; i++) {
+        errors[error.details[i].path[0]] = error.details[i].message;
+      }
+    }
+
+    setErrors(errors);
+    return Object.keys(errors).length > 0 ? errors : null;
+  }
+
+  let submitHadnler = (e) => {
+  e.preventDefault();
+
+  const errors = validate();
+  if(errors) return;
+  sendEmail(e);
+}
+
   
   return (
     <section className='contact' id='contact'>
@@ -70,10 +114,13 @@ function ContactPage() {
             ))
           }
         </div>
-        <form ref={form} onSubmit={sendEmail} className='flex flex-col gap-[30px]'>
-          <input type="text" name='name' placeholder='Your Full Name' className='w-full p-6 border-2 border-solid border-primaryVariant rounded-lg bg-transparent resize-none text-white'/>
-          <input type="email" name='email' placeholder='Your Email' className='w-full p-6 border-2 border-solid border-primaryVariant rounded-lg bg-transparent resize-none text-white'/>
-          <textarea rows={5} name="message" placeholder='Your Message' className='w-full p-6 border-2 border-solid border-primaryVariant rounded-lg bg-transparent resize-none text-white'></textarea>
+        <form ref={formRef} onSubmit={submitHadnler} className='flex flex-col gap-[30px]'>
+          <input onChange={onChangeHandler} type="text" name='name' placeholder='Your Full Name' className='w-full p-6 border-2 border-solid border-primaryVariant rounded-lg bg-transparent resize-none text-white'/>
+          {errors.name && <p className='text-red-600' >{errors.name}</p>}
+          <input onChange={onChangeHandler} type="email" name='email' placeholder='Your Email' className='w-full p-6 border-2 border-solid border-primaryVariant rounded-lg bg-transparent resize-none text-white'/>
+          {errors.email && <p className='text-red-600' >{errors.email}</p>}
+          <textarea onChange={onChangeHandler} rows={5} name="message" placeholder='Your Message' className='w-full p-6 border-2 border-solid border-primaryVariant rounded-lg bg-transparent resize-none text-white'></textarea>
+          {errors.message && <p className='text-red-600' >{errors.message}</p>}
           <button className='btn btn-primary text-[18px] py-[14px] px-[30px]'>Send Message</button>
         </form>
       </div>

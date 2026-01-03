@@ -13,7 +13,12 @@ function App() {
 
   return (
     <> 
-      <ToastContainer />
+      <ToastContainer
+        position="top-right"
+        autoClose={3000}
+        closeOnClick
+        pauseOnHover
+      />
       <HomePage />
       <Navbar />
       <AboutPage />
