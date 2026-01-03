@@ -109,7 +109,7 @@ function ContactPage() {
               <div className="card p-4 sm:p-6 rounded-[1.2rem] hover:border-primaryVariant" key={c.id}>
                 {c.icon}
                 <h4>{c.title}</h4>
-                <h5 className='lg:text-[0.55rem] 2xl:text-[0.84rem]'>{c.info}</h5>
+                <h5 className='text-[0.9rem] lg:text-[0.55rem] 2xl:text-[0.84rem]'>{c.info}</h5>
                 <a href={c.link} target='_blank' className='text-primary mt-[0.7rem] inline-block text-[0.8rem]'>Send Message</a>
               </div>
             ))

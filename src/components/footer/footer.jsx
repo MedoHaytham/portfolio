@@ -1,9 +1,27 @@
 import React from 'react'
 import './footer.css'
+import { FaInstagram } from "react-icons/fa";
+import { FaXTwitter, FaThreads } from "react-icons/fa6";
 
 function Footer() {
   return (
-    <div>Footer</div>
+    <footer className='bg-primary py-10 text-center text-[14px] mt-[100px]'>
+      <a href="#" className='text-bgColor text-[25px] font-medium mb-[30px] inline-block'>Mohamed Haytham</a>
+      <ul className='flex flex-col gap-[20px] md:flex-row flex-wrap justify-center md:gap-[30px] mx-auto mb-[30px]'>
+        <li><a href="#" className='text-bgColor'>Home</a></li>
+        <li><a href="#about" className='text-bgColor'>About</a></li>
+        <li><a href="#skills" className='text-bgColor'>Skills</a></li>
+        <li><a href="#services" className='text-bgColor'>Services</a></li>
+        <li><a href="#projects" className='text-bgColor'>Projects</a></li>
+        <li><a href="#contact" className='text-bgColor'>Contact</a></li>
+      </ul>
+      <div className="socials flex justify-center gap-[15px] mb-[40px]">
+        <a href="#" className='text-white bg-bgColor p-3 rounded-[10px] flex border border-solid border-transparent hover:bg-transparent hover:border-bgColor hover:text-bgColor' target='_blank'><FaInstagram /></a>
+        <a href="#" className='text-white bg-bgColor p-3 rounded-[10px] flex border border-solid border-transparent hover:bg-transparent hover:border-bgColor hover:text-bgColor' target='_blank'><FaXTwitter /></a>
+        <a href="#" className='text-white bg-bgColor p-3 rounded-[10px] flex border border-solid border-transparent hover:bg-transparent hover:border-bgColor hover:text-bgColor' target='_blank'><FaThreads /></a>
+      </div>
+      <small className='mb-16 text-bgColor'>&copy; <a href="#" className='text-white'>Mohamed Haytham</a> All rights reserved</small>
+    </footer>
   )
 }
 
