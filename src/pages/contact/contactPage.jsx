@@ -1,10 +1,12 @@
-import React from 'react'
+import React, { useRef } from 'react';
 import './contactPage.css'
 import TopSection from '../../components/topSection'
 import Card from '../../components/card'
 import { MdOutlineMail } from "react-icons/md";
 import { RiMessengerLine } from "react-icons/ri";
 import { FaWhatsapp } from "react-icons/fa6";
+import emailjs from '@emailjs/browser';
+import { toast } from 'react-toastify';
 
 const contactData = [
   {
@@ -32,6 +34,26 @@ const contactData = [
 
 
 function ContactPage() {
+
+  const form = useRef();
+
+  const sendEmail = (e) => {
+  e.preventDefault();
+
+  emailjs
+    .sendForm('service_1pswwjp', 'template_05h25xq', form.current, {
+      publicKey: '50JsRbDXjEL9VcWXL',
+    })
+    .then(
+      () => {
+        toast.success('Email Sent');
+      },
+      (error) => {
+        toast.error('Failed to send email', error.text);
+      },
+    );
+  }
+  
   return (
     <section className='contact' id='contact'>
       <TopSection title={'Contact Me'} desc={'Get In Touch'}/>
@@ -48,7 +70,7 @@ function ContactPage() {
             ))
           }
         </div>
-        <form className='flex flex-col gap-[30px]'>
+        <form ref={form} onSubmit={sendEmail} className='flex flex-col gap-[30px]'>
           <input type="text" name='name' placeholder='Your Full Name' className='w-full p-6 border-2 border-solid border-primaryVariant rounded-lg bg-transparent resize-none text-white'/>
           <input type="email" name='email' placeholder='Your Email' className='w-full p-6 border-2 border-solid border-primaryVariant rounded-lg bg-transparent resize-none text-white'/>
           <textarea rows={5} name="message" placeholder='Your Message' className='w-full p-6 border-2 border-solid border-primaryVariant rounded-lg bg-transparent resize-none text-white'></textarea>

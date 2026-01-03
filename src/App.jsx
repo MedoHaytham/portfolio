@@ -6,16 +6,19 @@ import ProjectsPage from './pages/projects/projectsPage';
 import ContactPage from './pages/contact/contactPage';
 import Footer from './components/footer/footer';
 import ServicesPage from './pages/services/servicesPage';
+import { ToastContainer } from "react-toastify";
+
 
 function App() {
 
   return (
     <> 
+      <ToastContainer />
       <HomePage />
       <Navbar />
       <AboutPage />
       <SkillsPage />
-      {/* <ServicesPage /> */}
+      <ServicesPage />
       <ProjectsPage />
       <ContactPage />
       <Footer />
