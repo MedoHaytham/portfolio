@@ -36,6 +36,8 @@ const navItems = [
 function Navbar() {
   const [active, setActive] = useState('#');
   const activeRef = useRef(active);
+  const [show, setShow] = useState(true);
+  const lastScrollY = useRef(0);
 
   useEffect(() => {
     activeRef.current = active;
@@ -47,19 +49,28 @@ function Navbar() {
     const handleScroll = () => {
       const scrollY = window.scrollY;
 
-      if (scrollY < 100) {
-        if (activeRef.current !== '#') setActive('#');
-        return;
+      const windowHeight = window.innerHeight;
+      const documentHeight = document.body.scrollHeight;
+      if (scrollY + windowHeight >= documentHeight - 5) {
+        setShow(false);
+      } else {
+        setShow(true);
       }
 
-      sections.forEach((sec) => {
-        const top = sec.offsetTop - 150;
-        const height = sec.offsetHeight;
-        const current = `#${sec.id}`;
-        if (scrollY >= top && scrollY < top + height) {
-          if (activeRef.current !== current) setActive(current);
-        }
-      });
+      if (scrollY < 100) {
+        if (activeRef.current !== '#') setActive('#');
+      } else {
+        sections.forEach((sec) => {
+          const top = sec.offsetTop - 150;
+          const height = sec.offsetHeight;
+          const current = `#${sec.id}`;
+          if (scrollY >= top && scrollY < top + height) {
+            if (activeRef.current !== current) setActive(current);
+          }
+        });
+      }
+      
+      lastScrollY.current = scrollY;
     };
 
     handleScroll();
@@ -68,7 +79,7 @@ function Navbar() {
   }, []);
   
   return (
-    <nav className='bg-black/30 w-max flex gap-[0.8rem] py-[0.7rem] px-[1.7rem] z-10 fixed left-1/2 -translate-x-1/2 bottom-8 rounded-[3rem] backdrop-blur-lg'>
+    <nav className={`bg-black/30 w-max flex gap-[0.8rem] py-[0.7rem] px-[1.7rem] z-10 fixed left-1/2 -translate-x-1/2 bottom-8 rounded-[3rem] backdrop-blur-lg transition-main-all ${show ? 'opacity-100' : 'opacity-0 pointer-events-none'}`}>
       {
         navItems.map((n) => (
           <a
