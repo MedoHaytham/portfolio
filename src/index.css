@@ -22,7 +22,7 @@
   }
 
   section {
-    @apply sm:pt-20 lg:pt-24 pt-32;
+    @apply pt-32 sm:pt-20 lg:pt-24;
   }
 
   a {
@@ -35,6 +35,10 @@
 
   img {
     @apply w-full block object-cover;
+  }
+
+  ::-webkit-scrollbar {
+    display: none;
   }
 }
 
@@ -60,7 +64,7 @@
   }
 
   .card {
-    @apply flex flex-col items-center p-8 bg-bgVariant border border-solid border-transparent rounded-2xl hover:border-bgVariant hover:bg-transparent transition-main-all
+    @apply flex flex-col items-center p-8 bg-bgVariant border border-solid border-transparent rounded-2xl hover:border-bgVariant hover:bg-transparent transition-main-all;
   }
 }
 
