@@ -49,6 +49,7 @@ function ContactPage() {
     .then(
       () => {
         toast.success('Email Sent');
+        e.target.reset();
       },
       (error) => {
         toast.error('Failed to send email', error.text);
