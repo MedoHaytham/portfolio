@@ -1,5 +1,4 @@
 import React from 'react'
-import './homePage.css'
 import { FaLinkedin } from "react-icons/fa";
 import { FaGithub } from "react-icons/fa6";
 import { FaFacebook } from "react-icons/fa6";

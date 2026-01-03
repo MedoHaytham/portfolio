@@ -1,10 +1,9 @@
 import React from 'react'
-import './aboutPage.css'
-import TopSection from '../../components/topSection'
 import { FaAward } from "react-icons/fa";
 import { FiUsers } from "react-icons/fi";
 import { VscFolderLibrary } from "react-icons/vsc";
-import Card from '../../components/card';
+import TopSection from '../components/topSection';
+import Card from './../components/card';
 
 
 
@@ -20,7 +19,7 @@ function AboutPage() {
         </div>
         <div className="content text-center md:text-start">
           <div className="cards grid grid-cols-[1fr,1fr] gap-4 lg:grid-cols-[repeat(3,1fr)] lg:gap-6">
-            <Card 
+            <Card
               icon={<FaAward className='mb-4 text-[2rem] fill-primary'/>}
               title={'Experience'}
               subTitle={'1+ years working'}

@@ -1,7 +1,6 @@
 import React from 'react'
-import './skillsPage.css'
-import TopSection from './../../components/topSection';
-import Skill from './../../components/skill';
+import Skill from './../components/skill';
+import TopSection from '../components/topSection';
 
 const skillsData = [
   {

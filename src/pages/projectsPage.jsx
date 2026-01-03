@@ -1,7 +1,6 @@
 import React from 'react'
-import './projectsPage.css'
-import TopSection from '../../components/topSection'
-import Project from '../../components/project'
+import TopSection from '../components/topSection'
+import Project from './../components/project';
 
 const projectsData = [
   {
