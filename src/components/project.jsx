@@ -6,7 +6,7 @@ function Project({img, title, github, site}) {
       <div className="image rounded-2xl overflow-hidden">
         <img src={`/assets/${img}`} alt="projcet-1"/>
       </div>
-      <h3 className='mt-[22px] mb-[35px]'>{title}</h3>
+      <h3 className='mt-[22px] mb-[35px] capitalize'>{title}</h3>
       <div className="btns flex gap-5 mb-4">
         <a href={github} target='_blank' className='btn'>Github</a>
         <a href={site} target='_blank' className='btn btn-primary'>Visit Site</a>
