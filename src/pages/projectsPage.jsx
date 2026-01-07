@@ -20,7 +20,7 @@ const projectsData = [
     {
     id: 3,
     image:'portfolio3.jpg',
-    title: 'Projcet 3',
+    title: 'admin dashboard',
     github: '#',
     site: '#'
   },
