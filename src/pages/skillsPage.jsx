@@ -5,51 +5,51 @@ import TopSection from '../components/topSection';
 const skillsData = [
   {
     id: 1, 
+    img:'html.svg',
+    title: 'html',
+    desc:'User Interface'
+  },
+  {
+    id: 2, 
     img:'css3.svg',
     title: 'CSS',
     desc:'User Interface'
   },
   {
-    id: 2,
+    id: 3,
     img:'javascript.svg',
     title:'javaScript',
     desc:'Interaction'
   },
   {
-    id: 3,
+    id: 4,
     img:'react.svg',
     title:'react',
+    desc:'Library'
+  },
+  {
+    id: 5,
+    img:'nextjs.svg',
+    title:'nextjs',
     desc:'Framework'
   },
   {
-    id: 4,
+    id: 6,
     img:'tailwindcss.svg',
     title:'tailwindCss',
     desc:'User Interface'
   },
-  {
-    id: 5,
-    img:'nodejs.svg',
-    title:'nodeJS',
-    desc:'Web Server'
-  },
-  {
-    id: 6,
-    img:'figma.svg',
-    title:'figma',
-    desc:'Design tool'
-  },
-  {
+    {
     id: 7,
-    img:'expressjs.svg',
-    title:'expressJS',
-    desc:'Node Framework'
+    img:'bootstrap.svg',
+    title:'bootstrap',
+    desc:'User Interface'
   },
   {
     id: 8,
-    img:'mongodb.svg',
-    title:'mongodb',
-    desc:'Database'
+    img:'figma.svg',
+    title:'figma',
+    desc:'Design tool'
   },
 ]
 
