@@ -19,14 +19,14 @@ const projectsData = [
   },
     {
     id: 3,
-    image:'portfolio3.jpg',
+    image:'project 3.jpg',
     title: 'admin Page',
     github: 'https://github.com/MedoHaytham/admin-dashboard',
     site: 'https://admin-dashboard-black-nine-79.vercel.app'
   },
     {
     id: 4,
-    image:'portfolio3.jpg',
+    image:'project 4.jpg',
     title: 'Weather App',
     github: 'https://github.com/MedoHaytham/weather-app',
     site: 'https://weather-app-theta-nine-f575urx091.vercel.app'
