@@ -25,7 +25,7 @@ function HomePage() {
         <a href="#about" className='hidden xl:block absolute bottom-[-90px] right-[-35px] font-light rotate-90'>Scroll Down</a>
 
         <div className="links text-[25px] flex justify-center gap-5 xl:flex-col md:items-center xl:absolute xl:bottom-[-120px] xl:after:content-[''] xl:after:w-[1px] xl:after:h-8 xl:after:bg-primary">
-          <a href="https://www.linkedin.com/in/mohamed-haytham-8a316015b" target='_blank'><FaLinkedin /></a>
+          <a href="www.linkedin.com/in/mohamed-haytham-47ab193a8" target='_blank'><FaLinkedin /></a>
           <a href="https://github.com/MedoHaytham" target='_blank'><FaGithub /></a>
           <a href="https://www.facebook.com/medo.haytham.31" target='_blank'><FaFacebook /></a>
         </div>
