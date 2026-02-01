@@ -45,6 +45,12 @@ const skillsData = [
     title:'bootstrap',
     desc:'User Interface'
   },
+  {
+    id: 8,
+    img:'figma.svg',
+    title:'figmas',
+    desc:'Design tool'
+  },
 ]
 
 function SkillsPage() {
