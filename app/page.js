@@ -1,3 +1,6 @@
+export const dynamic = "force-dynamic";
+export const revalidate = 0;
+
 import { ToastContainer } from "react-toastify";
 import AboutPage from "./AboutPage/page";
 import Footer from "./components/footer";

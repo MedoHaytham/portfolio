@@ -3,9 +3,6 @@ import ProjectCard from './../components/project';
 import connectDB from '@/lib/connectDB';
 import Project from "@/app/models/Project";
 
-export const dynamic = "force-dynamic";
-export const revalidate = 0;
-
 async function ProjectsPage() {
   await connectDB();
   const projectsData = await Project.find({}).sort({ createdAt: -1 }).lean();
