@@ -48,7 +48,7 @@ const skillsData = [
   {
     id: 8,
     img:'figma.svg',
-    title:'figmas',
+    title:'figma',
     desc:'Design tool'
   },
 ]
