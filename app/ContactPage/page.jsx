@@ -1,3 +1,4 @@
+"use client"
 import React, { useRef, useState } from "react";
 import { MdOutlineMail } from "react-icons/md";
 import { RiMessengerLine } from "react-icons/ri";
@@ -96,7 +97,7 @@ function ContactPage() {
   return (
     <section className="contact" id="contact">
       <TopSection title={"Contact Me"} desc={"Get In Touch"} />
-      <div className="container w-[90%] md:w-[60%] grid grid-cols-1 lg:grid-cols-[30%,58%] gap-[2rem] lg:gap-[12%]">
+      <div className="wrapper w-[90%] md:w-[60%] grid grid-cols-1 lg:grid-cols-[30%_58%] gap-8 lg:gap-[12%]">
         <div className="contact-options flex flex-col gap-[1.2rem]">
           {contactData.map((c) => (
             <article
@@ -121,7 +122,7 @@ function ContactPage() {
         <form
           ref={formRef}
           onSubmit={submitHadnler}
-          className="flex flex-col gap-[30px]"
+          className="flex flex-col gap-7.5"
         >
           <input
             onChange={onChangeHandler}
@@ -147,7 +148,7 @@ function ContactPage() {
             className="w-full p-6 border-2 border-solid border-primaryVariant rounded-lg bg-transparent resize-none text-white"
           ></textarea>
           {errors.message && <p className="text-red-600">{errors.message}</p>}
-          <button className="btn btn-primary text-[18px] py-[14px] px-[30px]">
+          <button className="btn btn-primary text-[18px] py-3.5 px-7.5">
             Send Message
           </button>
         </form>

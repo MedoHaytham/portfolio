@@ -1,3 +1,4 @@
+"use client"
 import React, { useEffect, useRef, useState } from 'react'
 import { IoHomeOutline } from "react-icons/io5";
 import { LuUserRound } from "react-icons/lu";

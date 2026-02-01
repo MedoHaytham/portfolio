@@ -1,0 +1,109 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap');
+@import "tailwindcss";
+
+:root {
+  --background: #ffffff;
+  --foreground: #171717;
+  --primary: #4db5ff;
+  --primaryVariant: #ffffff66;
+  --bgColor: #1f1f38;
+  --bgVariant: #2c2c6c;
+  --light: #ffffff99;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
+  --color-primary: var(--primary);
+  --color-primaryVariant: var(--primaryVariant);
+  --color-bgColor: var(--bgColor);
+  --color-bgVariant: var(--bgVariant);
+  --color-light: var(--light);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --background: #0a0a0a;
+    --foreground: #ededed;
+  }
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    font-family: 'Poppins', Arial, Helvetica, sans-serif;
+
+    @apply bg-bgColor text-white leading-[1.7] bg-[url(/assets/bg-texture.png)];
+  }
+
+  h1,h2,h3,h4,h5,h6 {
+    @apply font-medium;
+  }
+
+  h1 {
+    @apply text-[2.5rem];
+  }
+
+  section {
+    @apply pt-32 sm:pt-20 lg:pt-24;
+  }
+
+  a {
+    @apply text-primary no-underline transition-all duration-400 ease-[ease] hover:text-white;
+  }
+
+  img {
+    @apply w-full block object-cover;
+  }
+
+  ::-webkit-scrollbar {
+    display: none;
+  }
+}
+
+@layer components {
+  .wrapper {
+    @apply w-[90%] lg:w-[85%] xl:w-4/5 my-0 mx-auto;
+  }
+
+  .btn {
+    @apply w-max inline-block py-3 px-[1.2rem] rounded-[0.4rem] cursor-pointer border border-primary;
+    @apply transition-all duration-400 ease-[ease];
+  }
+
+  .btn:hover {
+    @apply bg-white text-bgColor border-transparent;
+  }
+
+  .btn-primary {
+    @apply bg-primary text-bgColor;
+  }
+
+  .card {
+    @apply flex flex-col items-center p-8 bg-bgVariant border border-solid border-transparent rounded-2xl hover:border-bgVariant hover:bg-transparent transition-all duration-400 ease-[ease];
+  }
+}
+
+@layer utilities {
+  .transition-main-all {
+    @apply transition-all duration-400 ease-[ease];
+  }
+}
+
+/* Toastify */
+.Toastify,
+.Toastify__toast-container {
+  padding: 0 !important;
+  margin: 0 !important;
+}
+
+.Toastify__toast-container--top-right,
+.Toastify__toast-container--top-left,
+.Toastify__toast-container--top-center {
+  top: 20px !important;
+}
