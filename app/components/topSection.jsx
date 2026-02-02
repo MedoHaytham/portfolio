@@ -1,5 +1,3 @@
-import React from 'react'
-
 function TopSection({desc, title}) {
   return (
     <div className="top-section">

@@ -1,5 +1,3 @@
-import React from 'react'
-
 function Card({icon, title, subTitle}) {
   return (
     <div className="card">

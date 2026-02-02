@@ -1,7 +1,7 @@
 import TopSection from '../components/topSection'
 import ProjectCard from './../components/project';
 import connectDB from '@/lib/connectDB';
-import Project from "@/app/models/Project";
+import Project from "@/app/models/Projects";
 
 async function ProjectsPage() {
   await connectDB();

@@ -1,5 +1,5 @@
 "use client"
-import React, { useRef, useState } from "react";
+import { useRef, useState } from "react";
 import { MdOutlineMail } from "react-icons/md";
 import { RiMessengerLine } from "react-icons/ri";
 import { FaWhatsapp } from "react-icons/fa6";

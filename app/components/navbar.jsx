@@ -1,10 +1,12 @@
 "use client"
-import React, { useEffect, useRef, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { IoHomeOutline } from "react-icons/io5";
 import { LuUserRound } from "react-icons/lu";
 import { PiBook } from "react-icons/pi";
 import { GrProjects } from "react-icons/gr";
 import { BiMessageSquareDetail } from "react-icons/bi";
+import { SlBadge } from "react-icons/sl";
+
 
 const navItems = [
   { 
@@ -17,18 +19,23 @@ const navItems = [
     href: '#about',
     icon: <LuUserRound />
   },
-  { 
+  {
     id: 3,
+    href: '#skills',
+    icon: <SlBadge />
+  },
+  { 
+    id: 4,
     href: '#services',
     icon: <PiBook />
   },
   { 
-    id: 4,
+    id: 5,
     href: '#projects',
     icon: <GrProjects />
   },
   { 
-    id: 5,
+    id: 6,
     href: '#contact',
     icon: <BiMessageSquareDetail />
   },
