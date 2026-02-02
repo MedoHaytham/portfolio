@@ -3,7 +3,7 @@ import mongoose from "mongoose";
 const ProjectSchema = new mongoose.Schema(
   {
     title: { type: String, required: true },
-    image: { type: String, required: true },  // ممكن تخزن URL للصورة
+    image: { type: String, required: true },
     github: { type: String, required: true },
     site: { type: String, required: true },
   },
