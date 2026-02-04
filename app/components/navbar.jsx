@@ -87,7 +87,7 @@ function Navbar() {
   }, []);
   
   return (
-    <nav className={`bg-black/30 w-max flex gap-[0.8rem] py-[0.7rem] px-[1.7rem] z-10 fixed left-1/2 -translate-x-1/2 bottom-8 rounded-[3rem] backdrop-blur-lg transition-main-all ${show ? 'opacity-100' : 'opacity-0 pointer-events-none'}`}>
+    <nav className={`bg-black/30 w-80 md:w-max flex gap-[0.35rem] md:gap-[0.8rem] py-[0.7rem] px-[1.1rem] md:px-[1.7rem] z-10 fixed left-1/2 -translate-x-1/2 bottom-8 rounded-[3rem] backdrop-blur-lg transition-main-all ${show ? 'opacity-100' : 'opacity-0 pointer-events-none'}`}>
       {
         navItems.map((n) => (
           <a
