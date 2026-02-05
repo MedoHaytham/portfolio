@@ -14,7 +14,7 @@ function HomePage() {
         <h4 className='text-light'>Frontend Developer</h4>
 
         <div className='btns flex justify-center gap-5 mt-10'>
-          <a href="/assets/Mohamed Haytham Resume.pdf" download={true} className='btn'>Download CV</a>
+          <a href="/assets/Mohamed-Haytham-Resume.pdf" download={true} className='btn'>Download CV</a>
           <a href="#contact" className='btn btn-primary'>Let&apos;s Talk</a>
         </div>
 
