@@ -7,7 +7,7 @@ import skill from '@/app/models/Skills';
 async function SkillsPage() {
 
   await connectDB();
-  const skillsData = await skill.find({}).sort({ createdAt: -1 }).lean(); 
+  const skillsData = await skill.find({}).sort({_id: 1}).lean(); 
 
   return (
     <section className='skills' id='skills'>

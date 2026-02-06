@@ -15,7 +15,7 @@ const icons = {
 async function ServicesPage() {
 
   await connectDB();
-  const servicesData = await Service.find({}).sort({ createdAt: -1 }).lean(); 
+  const servicesData = await Service.find({}).sort({_id: 1}).lean(); 
 
   return (
     <section className="services" id="services">

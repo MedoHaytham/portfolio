@@ -5,7 +5,7 @@ import Project from "@/app/models/Projects";
 
 async function ProjectsPage() {
   await connectDB();
-  const projectsData = await Project.find({}).sort({ createdAt: -1 }).lean();
+  const projectsData = await Project.find({}).sort({_id: 1}).lean();
 
   return (
     <section className='projects' id='projects'>
