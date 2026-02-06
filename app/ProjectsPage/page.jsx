@@ -10,7 +10,7 @@ async function ProjectsPage() {
   return (
     <section className='projects' id='projects'>
       <TopSection title={'Portfolio'} desc={'My Recent Work'}/>
-      <div className="wrapper flex justify-between flex-wrap">
+      <div className="wrapper grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 md:gap-x-7 xl:gap-x-13">
         {
           projectsData.map((p) => (
             <ProjectCard

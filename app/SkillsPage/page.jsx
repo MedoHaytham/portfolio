@@ -12,7 +12,7 @@ async function SkillsPage() {
   return (
     <section className='skills' id='skills'>
       <TopSection desc='What Skills I Have' title='My Expreience' />
-      <div className="wrapper flex justify-between items-center flex-wrap">
+      <div className="wrapper grid grid-cols-2 lg:grid-cols-4 gap-x-1.75 md:gap-x-3 xl:gap-x-5">
         {
           skillsData.map((s) => (
             <SkillCard key={s._id.toString()}
