@@ -35,7 +35,7 @@ function AboutPage() {
               subTitle={'3+ Completed'}
             />
           </div>
-          <p className='my-6 mx-0 md:mt-4 md:mb-6 lg:mt-8 lg:mb-[2.6rem] text-light'>As a React Frontend Engineer, I specialize in building dynamic, responsive, and user-friendly web applications using React. My expertise lies in developing reusable components, managing state efficiently, and creating scalable frontend architectures that deliver seamless user experiences. I focus on turning design concepts into interactive interfaces, optimizing performance, and ensuring maintainable code that supports long-term project growth.</p>
+          <p className='my-6 mx-0 md:mt-4 md:mb-6 lg:mt-8 lg:mb-[2.6rem] text-light'>Motivated Full Stack MERN Developer with hands-on experience in building scalable and high-performance web applications using MongoDB, Express.js, React.js, and Node.js. Specialized in developing end-to-end solutions, including responsive frontend interfaces, robust backend APIs, and efficient database design. Strong in RESTful API development, state management, performance optimization, and building maintainable, scalable applications with clean and reusable code architecture.</p>
           <a href="#contact" className='btn btn-primary'>Let&apos;s Talk</a>
         </div>
       </div>
