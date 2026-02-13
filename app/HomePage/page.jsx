@@ -11,7 +11,7 @@ function HomePage() {
         
         <h4 className='text-[25px]'>hello I&apos;m</h4>
         <h1 className='text-[1.85rem] md:text-[2.5rem]'>Mohamed Haytham</h1>
-        <h4 className='text-light'>Frontend Developer</h4>
+        <h4 className='text-light'>Fullstack Developer (MERN)</h4>
 
         <div className='btns flex justify-center gap-5 mt-10'>
           <a href="/assets/Mohamed-Haytham-Resume.pdf" download={true} className='btn'>Download CV</a>
