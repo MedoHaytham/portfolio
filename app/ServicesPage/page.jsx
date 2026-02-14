@@ -4,7 +4,7 @@ import { MdDesignServices } from "react-icons/md";
 import { IoIosRocket } from "react-icons/io";
 import { FaCode } from "react-icons/fa";
 import connectDB from "@/lib/connectDB";
-import Service from "@/app/models/Services"
+import Service from "@/app/models/Service"
 
 const icons = {
   MdDesignServices,
