@@ -1,7 +1,7 @@
 import SkillCard from './../components/skill';
 import TopSection from '../components/topSection';
 import connectDB from '@/lib/connectDB';
-import skill from '@/app/models/Skills';
+import skill from '@/app/models/Skill';
 
 
 async function SkillsPage() {
