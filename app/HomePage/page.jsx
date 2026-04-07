@@ -14,7 +14,7 @@ function HomePage() {
         <h4 className='text-light'>Fullstack Developer (MERN)</h4>
 
         <div className='btns flex justify-center gap-5 mt-10'>
-          <a href="/assets/Mohamed-Haytham-Resume.pdf" download={true} className='btn'>Download CV</a>
+          <a href="https://drive.google.com/uc?export=download&id=1jsYPU0S_F7Yy56c1BwtA67v6URpNURt0"  className='btn'>Download CV</a>
           <a href="#contact" className='btn btn-primary'>Let&apos;s Talk</a>
         </div>
 
