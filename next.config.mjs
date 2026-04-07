@@ -1,9 +1,14 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  /* config options here */
   reactCompiler: true,
   images: {
-    domains: ['drive.google.com'],
+    remotePatterns: [
+      {
+        protocol: 'https',
+        hostname: 'drive.google.com',
+        pathname: '/**',
+      },
+    ],
   },
 };
 
