@@ -263,7 +263,7 @@ export default function Dashboard({ initialProjects, user }) {
                       <div className="flex flex-col items-center gap-2">
                         <FiUploadCloud className="text-3xl text-green-400" />
                         <p className="text-sm font-medium text-green-400">Change Cover Image</p>
-                        <p className="text-xs text-white/50 truncate max-w-[200px]">Uploaded to Cloudinary ✓</p>
+                        <p className="text-xs text-white/50 truncate max-w-50">Uploaded to Cloudinary ✓</p>
                       </div>
                     ) : (
                       <div className="flex flex-col items-center gap-2">

@@ -1,10 +1,16 @@
 import Image from 'next/image'
 
+const getImageSrc = (img) => {
+  if (!img) return "";
+  if (img.startsWith("http") || img.startsWith("/")) return img;
+  return `/assets/${img}`;
+};
+
 function ProjectCard({img, title, github, site}) {
   return (
     <article className='w-full bg-bgVariant rounded-[20px] p-5 mb-12.5 border border-solid border-transparent hover:border-bgVariant hover:bg-transparent transition-main-all'>
       <div className="image rounded-2xl overflow-hidden">
-        <Image src={`/assets/${img}`} alt={title} width={1200} height={800} />
+        <Image src={getImageSrc(img)} alt={title} width={1200} height={800} />
       </div>
       <h3 className='mt-5.5 mb-8.75 capitalize'>{title}</h3>
       <div className="btns flex gap-5 mb-4">
