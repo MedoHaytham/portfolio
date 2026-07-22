@@ -2,9 +2,10 @@
 
 import { useState, useRef } from "react";
 import { useRouter } from "next/navigation";
+import Link from "next/link";
 import Image from "next/image";
 import { toast } from "react-toastify";
-import { FiPlus, FiEdit2, FiTrash2, FiLogOut, FiGithub, FiExternalLink, FiUploadCloud, FiX, FiArrowUp, FiArrowDown } from "react-icons/fi";
+import { FiPlus, FiEdit2, FiTrash2, FiLogOut, FiGithub, FiExternalLink, FiUploadCloud, FiX, FiArrowUp, FiArrowDown, FiArrowLeft } from "react-icons/fi";
 
 // Resolve image src safely: full URL, local /assets/ fallback, or empty string
 const getImageSrc = (img) => {
@@ -235,13 +236,22 @@ export default function Dashboard({ initialProjects, user }) {
             </h1>
             <p className="text-xs text-light">Welcome back, {user?.name || "Admin"}</p>
           </div>
-          <button
-            onClick={handleLogout}
-            className="flex items-center gap-2 py-2.5 px-4 rounded-xl border border-red-500/30 text-red-400 hover:bg-red-500/10 transition-all duration-300"
-          >
-            <FiLogOut />
-            <span className="hidden sm:inline">Logout</span>
-          </button>
+          <div className="flex items-center gap-3">
+            <Link
+              href="/"
+              className="flex items-center gap-2 py-2.5 px-4 rounded-xl border border-white/10 bg-white/5 hover:bg-white/10 text-white/80 hover:text-white transition-all duration-300 text-sm font-medium"
+            >
+              <FiArrowLeft className="text-lg" />
+              <span className="hidden sm:inline">Back to Home</span>
+            </Link>
+            <button
+              onClick={handleLogout}
+              className="flex items-center gap-2 py-2.5 px-4 rounded-xl border border-red-500/30 text-red-400 hover:bg-red-500/10 transition-all duration-300 text-sm font-medium"
+            >
+              <FiLogOut />
+              <span className="hidden sm:inline">Logout</span>
+            </button>
+          </div>
         </div>
       </header>
 

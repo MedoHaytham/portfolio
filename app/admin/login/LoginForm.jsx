@@ -2,8 +2,9 @@
 
 import { useState } from "react";
 import { useRouter } from "next/navigation";
+import Link from "next/link";
 import { toast } from "react-toastify";
-import { FiEye, FiEyeOff, FiAlertCircle } from "react-icons/fi";
+import { FiEye, FiEyeOff, FiAlertCircle, FiArrowLeft } from "react-icons/fi";
 
 export default function LoginForm() {
   const [email, setEmail] = useState("");
@@ -54,6 +55,12 @@ export default function LoginForm() {
   return (
     <div className="min-h-screen flex items-center justify-center bg-bgColor bg-[url(/assets/bg-texture.png)] px-4 py-12">
       <div className="w-full max-w-md bg-bgVariant/40 backdrop-blur-xl border border-white/10 p-8 rounded-3xl shadow-[0_8px_32px_0_rgba(0,0,0,0.37)] transition-all duration-300 hover:border-primary/30">
+        <Link
+          href="/"
+          className="inline-flex items-center gap-2 text-sm text-light hover:text-primary transition-colors mb-6"
+        >
+          <FiArrowLeft /> Back to Home
+        </Link>
         <div className="text-center mb-8">
           <h2 className="text-3xl font-bold text-white tracking-tight capitalize">Admin Login</h2>
           <p className="text-light mt-2 text-sm">Welcome back! Access your project control panel.</p>
