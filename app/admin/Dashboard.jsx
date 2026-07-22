@@ -6,12 +6,19 @@ import Image from "next/image";
 import { toast } from "react-toastify";
 import { FiPlus, FiEdit2, FiTrash2, FiLogOut, FiGithub, FiExternalLink, FiUploadCloud, FiX } from "react-icons/fi";
 
+// Resolve image src safely: full URL, local /assets/ fallback, or empty string
+const getImageSrc = (img) => {
+  if (!img) return "";
+  if (img.startsWith("http") || img.startsWith("/")) return img;
+  return `/assets/${img}`;
+};
+
 export default function Dashboard({ initialProjects, user }) {
   const [projects, setProjects] = useState(initialProjects);
   const [title, setTitle] = useState("");
   const [github, setGithub] = useState("");
   const [site, setSite] = useState("");
-  const [image, setImage] = useState(""); // Stores filename or URL
+  const [image, setImage] = useState(""); // Stores Cloudinary URL or legacy filename
   const [uploading, setUploading] = useState(false);
   const [submitting, setSubmitting] = useState(false);
   const [editingId, setEditingId] = useState(null); // ID of project being edited
@@ -40,7 +47,7 @@ export default function Dashboard({ initialProjects, user }) {
 
       const data = await res.json();
       if (res.ok) {
-        setImage(data.filename);
+        setImage(data.url);
         toast.success("Image uploaded successfully");
       } else {
         toast.error(data.error || "Failed to upload image");
@@ -191,7 +198,7 @@ export default function Dashboard({ initialProjects, user }) {
       <main className="max-w-7xl mx-auto px-4 md:px-8 mt-10">
         <div className="grid grid-cols-1 lg:grid-cols-[40%_57%] gap-10">
           {/* Create/Edit Form Container */}
-          <section className="bg-bgVariant/30 backdrop-blur-lg border border-white/10 p-6 md:p-8 rounded-3xl h-fit shadow-xl transition-all duration-300 hover:border-primary/20 pt-10">
+          <section className="sticky top-28 bg-bgVariant/30 backdrop-blur-lg border border-white/10 p-6 md:p-8 rounded-3xl h-fit shadow-xl transition-all duration-300 hover:border-primary/20 pt-10">
             <h2 className="text-2xl font-bold mb-6 text-white flex items-center gap-2">
               <FiPlus className={editingId ? "rotate-45 transition-transform" : ""} />
               {editingId ? "Edit Project" : "Add New Project"}
@@ -256,7 +263,7 @@ export default function Dashboard({ initialProjects, user }) {
                       <div className="flex flex-col items-center gap-2">
                         <FiUploadCloud className="text-3xl text-green-400" />
                         <p className="text-sm font-medium text-green-400">Change Cover Image</p>
-                        <p className="text-xs text-white/50 truncate max-w-[200px]">{image}</p>
+                        <p className="text-xs text-white/50 truncate max-w-[200px]">Uploaded to Cloudinary ✓</p>
                       </div>
                     ) : (
                       <div className="flex flex-col items-center gap-2">
@@ -271,7 +278,7 @@ export default function Dashboard({ initialProjects, user }) {
                   {image && (
                     <div className="relative rounded-2xl overflow-hidden border border-white/10 aspect-video w-full group bg-bgColor/40">
                       <Image
-                        src={image.startsWith("http") || image.startsWith("/") ? image : `/assets/${image}`}
+                        src={getImageSrc(image)}
                         alt="Project Preview"
                         fill
                         className="object-cover"
@@ -342,11 +349,7 @@ export default function Dashboard({ initialProjects, user }) {
                   >
                     <div className="relative aspect-video bg-bgColor/40 border-b border-white/5 overflow-hidden">
                       <Image
-                        src={
-                          project.image.startsWith("http") || project.image.startsWith("/")
-                            ? project.image
-                            : `/assets/${project.image}`
-                        }
+                        src={getImageSrc(project.image)}
                         alt={project.title}
                         fill
                         className="object-cover group-hover:scale-105 transition-all duration-500"

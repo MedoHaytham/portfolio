@@ -8,6 +8,11 @@ const nextConfig = {
         hostname: 'drive.google.com',
         pathname: '/**',
       },
+      {
+        protocol: 'https',
+        hostname: 'res.cloudinary.com',
+        pathname: '/**',
+      },
     ],
   },
 };
