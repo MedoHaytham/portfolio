@@ -4,7 +4,7 @@ import { useState, useRef } from "react";
 import { useRouter } from "next/navigation";
 import Image from "next/image";
 import { toast } from "react-toastify";
-import { FiPlus, FiEdit2, FiTrash2, FiLogOut, FiGithub, FiExternalLink, FiUploadCloud, FiX } from "react-icons/fi";
+import { FiPlus, FiEdit2, FiTrash2, FiLogOut, FiGithub, FiExternalLink, FiUploadCloud, FiX, FiArrowUp, FiArrowDown } from "react-icons/fi";
 
 // Resolve image src safely: full URL, local /assets/ fallback, or empty string
 const getImageSrc = (img) => {
@@ -19,6 +19,7 @@ export default function Dashboard({ initialProjects, user }) {
   const [github, setGithub] = useState("");
   const [site, setSite] = useState("");
   const [image, setImage] = useState(""); // Stores Cloudinary URL or legacy filename
+  const [order, setOrder] = useState("");
   const [uploading, setUploading] = useState(false);
   const [submitting, setSubmitting] = useState(false);
   const [editingId, setEditingId] = useState(null); // ID of project being edited
@@ -66,6 +67,7 @@ export default function Dashboard({ initialProjects, user }) {
     setGithub("");
     setSite("");
     setImage("");
+    setOrder("");
     setEditingId(null);
     if (fileInputRef.current) fileInputRef.current.value = "";
   };
@@ -79,7 +81,7 @@ export default function Dashboard({ initialProjects, user }) {
     }
 
     setSubmitting(true);
-    const payload = { title, image, github, site };
+    const payload = { title, image, github, site, order: order !== "" ? Number(order) : undefined };
 
     try {
       if (editingId) {
@@ -92,7 +94,9 @@ export default function Dashboard({ initialProjects, user }) {
 
         const data = await res.json();
         if (res.ok) {
-          setProjects(projects.map((p) => (p._id === editingId ? data : p)));
+          const updated = projects.map((p) => (p._id === editingId ? data : p));
+          updated.sort((a, b) => (a.order ?? 0) - (b.order ?? 0));
+          setProjects(updated);
           toast.success("Project updated successfully");
           resetForm();
         } else {
@@ -108,7 +112,9 @@ export default function Dashboard({ initialProjects, user }) {
 
         const data = await res.json();
         if (res.ok) {
-          setProjects([data, ...projects]);
+          const updated = [...projects, data];
+          updated.sort((a, b) => (a.order ?? 0) - (b.order ?? 0));
+          setProjects(updated);
           toast.success("Project created successfully");
           resetForm();
         } else {
@@ -131,8 +137,52 @@ export default function Dashboard({ initialProjects, user }) {
     setGithub(project.github);
     setSite(project.site);
     setImage(project.image);
+    setOrder(project.order !== undefined && project.order !== null ? project.order : "");
     // Scroll to form smoothly
     window.scrollTo({ top: 0, behavior: "smooth" });
+  };
+
+  // Handle reordering up/down
+  const handleMove = async (index, direction) => {
+    const targetIndex = direction === "up" ? index - 1 : index + 1;
+    if (targetIndex < 0 || targetIndex >= projects.length) return;
+
+    const newProjects = [...projects];
+    // Swap elements
+    const temp = newProjects[index];
+    newProjects[index] = newProjects[targetIndex];
+    newProjects[targetIndex] = temp;
+
+    // Assign sequential order values starting from 1
+    const reorderedProjects = newProjects.map((p, idx) => ({
+      ...p,
+      order: idx + 1,
+    }));
+
+    setProjects(reorderedProjects);
+
+    try {
+      const items = reorderedProjects.map((p) => ({
+        _id: p._id,
+        order: p.order,
+      }));
+
+      const res = await fetch("/api/admin/projects/reorder", {
+        method: "PUT",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ items }),
+      });
+
+      if (res.ok) {
+        toast.success("Order updated");
+        router.refresh();
+      } else {
+        toast.error("Failed to save new order");
+      }
+    } catch (err) {
+      console.error(err);
+      toast.error("Failed to reorder");
+    }
   };
 
   // Handle delete project
@@ -241,6 +291,18 @@ export default function Dashboard({ initialProjects, user }) {
                 />
               </div>
 
+              <div>
+                <label className="block text-sm font-medium text-light mb-2">Display Order (Optional)</label>
+                <input
+                  type="number"
+                  value={order}
+                  min={1}
+                  onChange={(e) => setOrder(e.target.value)}
+                  placeholder="e.g. 1 (lower numbers appear first)"
+                  className="w-full px-4 py-3 border border-white/10 rounded-xl bg-bgColor/40 text-white placeholder-white/30 focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary/20 transition-all duration-300"
+                />
+              </div>
+
               {/* Cover Image Upload Area */}
               <div>
                 <label className="block text-sm font-medium text-light mb-2">Project Cover Image</label>
@@ -342,7 +404,7 @@ export default function Dashboard({ initialProjects, user }) {
               </div>
             ) : (
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                {projects.map((project) => (
+                {projects.map((project, index) => (
                   <article
                     key={project._id}
                     className="bg-bgVariant/30 border border-white/5 rounded-2xl overflow-hidden hover:border-primary/30 transition-all duration-300 flex flex-col group shadow-lg"
@@ -354,6 +416,9 @@ export default function Dashboard({ initialProjects, user }) {
                         fill
                         className="object-cover group-hover:scale-105 transition-all duration-500"
                       />
+                      <span className="absolute top-2 left-2 bg-bgColor/80 backdrop-blur-md border border-white/10 text-primary text-xs font-bold px-2.5 py-1 rounded-lg">
+                        #{project.order ?? index + 1}
+                      </span>
                     </div>
                     <div className="p-5 flex-1 flex flex-col justify-between">
                       <div>
@@ -379,7 +444,26 @@ export default function Dashboard({ initialProjects, user }) {
                           </a>
                         </div>
                       </div>
-                      <div className="flex gap-3 border-t border-white/5 pt-4 mt-2">
+                      <div className="flex items-center gap-2 border-t border-white/5 pt-4 mt-2">
+                        {/* Order adjustment buttons */}
+                        <div className="flex gap-1">
+                          <button
+                            onClick={() => handleMove(index, "up")}
+                            disabled={index === 0}
+                            title="Move Up"
+                            className="p-2 rounded-lg border border-white/10 text-sm hover:bg-white/10 transition-all duration-300 disabled:opacity-30 disabled:cursor-not-allowed text-white"
+                          >
+                            <FiArrowUp />
+                          </button>
+                          <button
+                            onClick={() => handleMove(index, "down")}
+                            disabled={index === projects.length - 1}
+                            title="Move Down"
+                            className="p-2 rounded-lg border border-white/10 text-sm hover:bg-white/10 transition-all duration-300 disabled:opacity-30 disabled:cursor-not-allowed text-white"
+                          >
+                            <FiArrowDown />
+                          </button>
+                        </div>
                         <button
                           onClick={() => startEdit(project)}
                           className="flex-1 flex items-center justify-center gap-1.5 py-2 px-3 rounded-lg border border-white/10 text-sm hover:bg-white/5 transition-all duration-300 text-primary"

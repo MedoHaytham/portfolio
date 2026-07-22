@@ -14,15 +14,16 @@ export default async function AdminPage() {
 
   // Fetch initial projects server-side for speed
   await connectDB();
-  const rawProjects = await Project.find({}).sort({ createdAt: -1 }).lean();
+  const rawProjects = await Project.find({}).sort({ order: 1, createdAt: -1 }).lean();
 
   // Convert MongoDB ObjectIds and dates to strings so they are safe to pass to Client Component
-  const initialProjects = rawProjects.map((p) => ({
+  const initialProjects = rawProjects.map((p, idx) => ({
     _id: p._id.toString(),
     title: p.title,
     image: p.image,
     github: p.github,
     site: p.site,
+    order: p.order ?? idx + 1,
     createdAt: p.createdAt ? p.createdAt.toISOString() : null,
     updatedAt: p.updatedAt ? p.updatedAt.toISOString() : null,
   }));

@@ -6,7 +6,7 @@ import { verifyAuth } from "@/lib/auth";
 export async function GET(req) {
   try {
     await connectDB();
-    const projects = await Project.find({}).sort({ createdAt: -1 }).lean();
+    const projects = await Project.find({}).sort({ order: 1, createdAt: -1 }).lean();
     return NextResponse.json(projects);
   } catch (error) {
     console.error("GET Projects Error:", error);
@@ -22,10 +22,18 @@ export async function POST(req) {
 
   try {
     await connectDB();
-    const { title, image, github, site } = await req.json();
+    const { title, image, github, site, order } = await req.json();
 
     if (!title || !image || !github || !site) {
       return NextResponse.json({ error: "Please fill all fields" }, { status: 400 });
+    }
+
+    let projectOrder = order;
+    if (projectOrder === undefined || projectOrder === null || projectOrder === "") {
+      const count = await Project.countDocuments();
+      projectOrder = count + 1;
+    } else {
+      projectOrder = Number(projectOrder);
     }
 
     const project = await Project.create({
@@ -33,6 +41,7 @@ export async function POST(req) {
       image,
       github,
       site,
+      order: projectOrder,
     });
 
     return NextResponse.json(project, { status: 201 });

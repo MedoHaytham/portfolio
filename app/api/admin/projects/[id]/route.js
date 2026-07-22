@@ -12,15 +12,20 @@ export async function PUT(req, { params }) {
   try {
     const { id } = await params;
     await connectDB();
-    const { title, image, github, site } = await req.json();
+    const { title, image, github, site, order } = await req.json();
 
     if (!title || !image || !github || !site) {
       return NextResponse.json({ error: "Please fill all fields" }, { status: 400 });
     }
 
+    const updateFields = { title, image, github, site };
+    if (order !== undefined && order !== null) {
+      updateFields.order = Number(order);
+    }
+
     const updatedProject = await Project.findByIdAndUpdate(
       id,
-      { title, image, github, site },
+      updateFields,
       { new: true }
     );
 
