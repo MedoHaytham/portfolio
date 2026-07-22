@@ -36,10 +36,13 @@ export async function POST(req) {
       { status: 200 }
     );
 
+    const isHttps = req.headers.get("x-forwarded-proto") === "https" || req.nextUrl?.protocol === "https:";
+    const days = Number(process.env.JWT_COOKIE_EXPIRES_IN) || 7;
+
     response.cookies.set("admin_token", token, {
       httpOnly: true,
-      secure: process.env.NODE_ENV === "production",
-      maxAge: 60 * 60 * 24 * 7, // 7 days
+      secure: process.env.NODE_ENV === "production" || isHttps,
+      expires: new Date(Date.now() + days * 24 * 60 * 60 * 1000),
       path: "/",
     });
 
