@@ -3,16 +3,22 @@
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 import { toast } from "react-toastify";
+import { FiEye, FiEyeOff, FiAlertCircle } from "react-icons/fi";
 
 export default function LoginForm() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [showPassword, setShowPassword] = useState(false);
   const [loading, setLoading] = useState(false);
+  const [errorMsg, setErrorMsg] = useState("");
   const router = useRouter();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setErrorMsg("");
+
     if (!email || !password) {
+      setErrorMsg("Please fill in all fields");
       toast.error("Please fill in all fields");
       return;
     }
@@ -31,11 +37,15 @@ export default function LoginForm() {
         router.push("/admin");
         router.refresh();
       } else {
-        toast.error(data.error || "Login failed");
+        const message = data.error || "Invalid email or password";
+        setErrorMsg(message);
+        toast.error(message);
       }
     } catch (err) {
       console.error(err);
-      toast.error("An error occurred. Please try again.");
+      const message = "An unexpected error occurred. Please try again.";
+      setErrorMsg(message);
+      toast.error(message);
     } finally {
       setLoading(false);
     }
@@ -49,6 +59,13 @@ export default function LoginForm() {
           <p className="text-light mt-2 text-sm">Welcome back! Access your project control panel.</p>
         </div>
 
+        {errorMsg && (
+          <div className="mb-6 p-4 bg-red-500/15 border border-red-500/30 rounded-2xl flex items-center gap-3 text-red-400 text-sm font-medium animate-fadeIn">
+            <FiAlertCircle className="text-lg shrink-0" />
+            <span>{errorMsg}</span>
+          </div>
+        )}
+
         <form onSubmit={handleSubmit} className="space-y-6">
           <div>
             <label className="block text-sm font-medium text-light mb-2" htmlFor="email">
@@ -58,7 +75,10 @@ export default function LoginForm() {
               id="email"
               type="email"
               value={email}
-              onChange={(e) => setEmail(e.target.value)}
+              onChange={(e) => {
+                setEmail(e.target.value);
+                if (errorMsg) setErrorMsg("");
+              }}
               placeholder="admin@example.com"
               className="w-full px-5 py-3 border border-white/10 rounded-xl bg-bgColor/50 text-white placeholder-white/30 focus:outline-none focus:border-primary focus:ring-2 focus:ring-primary/20 transition-all duration-300"
               required
@@ -69,15 +89,28 @@ export default function LoginForm() {
             <label className="block text-sm font-medium text-light mb-2" htmlFor="password">
               Password
             </label>
-            <input
-              id="password"
-              type="password"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-              placeholder="••••••••"
-              className="w-full px-5 py-3 border border-white/10 rounded-xl bg-bgColor/50 text-white placeholder-white/30 focus:outline-none focus:border-primary focus:ring-2 focus:ring-primary/20 transition-all duration-300"
-              required
-            />
+            <div className="relative">
+              <input
+                id="password"
+                type={showPassword ? "text" : "password"}
+                value={password}
+                onChange={(e) => {
+                  setPassword(e.target.value);
+                  if (errorMsg) setErrorMsg("");
+                }}
+                placeholder="••••••••"
+                className="w-full px-5 py-3 pr-12 border border-white/10 rounded-xl bg-bgColor/50 text-white placeholder-white/30 focus:outline-none focus:border-primary focus:ring-2 focus:ring-primary/20 transition-all duration-300"
+                required
+              />
+              <button
+                type="button"
+                onClick={() => setShowPassword(!showPassword)}
+                className="absolute right-4 top-1/2 -translate-y-1/2 text-white/50 hover:text-white transition-colors duration-200"
+                aria-label={showPassword ? "Hide password" : "Show password"}
+              >
+                {showPassword ? <FiEyeOff className="text-lg" /> : <FiEye className="text-lg" />}
+              </button>
+            </div>
           </div>
 
           <button
@@ -92,8 +125,6 @@ export default function LoginForm() {
             )}
           </button>
         </form>
-
-
       </div>
     </div>
   );
