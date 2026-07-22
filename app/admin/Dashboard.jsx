@@ -95,9 +95,13 @@ export default function Dashboard({ initialProjects, user }) {
 
         const data = await res.json();
         if (res.ok) {
-          const updated = projects.map((p) => (p._id === editingId ? data : p));
-          updated.sort((a, b) => (a.order ?? 0) - (b.order ?? 0));
-          setProjects(updated);
+          if (data.projects) {
+            setProjects(data.projects);
+          } else {
+            const updated = projects.map((p) => (p._id === editingId ? (data.project || data) : p));
+            updated.sort((a, b) => (a.order ?? 0) - (b.order ?? 0));
+            setProjects(updated);
+          }
           toast.success("Project updated successfully");
           resetForm();
         } else {
@@ -113,9 +117,13 @@ export default function Dashboard({ initialProjects, user }) {
 
         const data = await res.json();
         if (res.ok) {
-          const updated = [...projects, data];
-          updated.sort((a, b) => (a.order ?? 0) - (b.order ?? 0));
-          setProjects(updated);
+          if (data.projects) {
+            setProjects(data.projects);
+          } else {
+            const updated = [...projects, data.project || data];
+            updated.sort((a, b) => (a.order ?? 0) - (b.order ?? 0));
+            setProjects(updated);
+          }
           toast.success("Project created successfully");
           resetForm();
         } else {
@@ -174,7 +182,11 @@ export default function Dashboard({ initialProjects, user }) {
         body: JSON.stringify({ items }),
       });
 
+      const data = await res.json();
       if (res.ok) {
+        if (data.projects) {
+          setProjects(data.projects);
+        }
         toast.success("Order updated");
         router.refresh();
       } else {
@@ -197,7 +209,11 @@ export default function Dashboard({ initialProjects, user }) {
 
       const data = await res.json();
       if (res.ok) {
-        setProjects(projects.filter((p) => p._id !== id));
+        if (data.projects) {
+          setProjects(data.projects);
+        } else {
+          setProjects(projects.filter((p) => p._id !== id));
+        }
         toast.success("Project deleted successfully");
         if (editingId === id) resetForm();
         router.refresh();

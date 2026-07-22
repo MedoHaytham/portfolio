@@ -2,6 +2,7 @@ import { NextResponse } from "next/server";
 import connectDB from "@/lib/connectDB";
 import Project from "@/app/models/Project";
 import { verifyAuth } from "@/lib/auth";
+import { resequenceOrders } from "@/lib/orderUtils";
 
 export async function PUT(req) {
   const auth = await verifyAuth();
@@ -28,7 +29,11 @@ export async function PUT(req) {
       await Project.bulkWrite(bulkOps);
     }
 
-    return NextResponse.json({ message: "Order updated successfully" });
+    await resequenceOrders();
+
+    const allProjects = await Project.find({}).sort({ order: 1, createdAt: -1 }).lean();
+
+    return NextResponse.json({ message: "Order updated successfully", projects: allProjects });
   } catch (error) {
     console.error("Reorder Projects Error:", error);
     return NextResponse.json({ error: "Failed to update project order" }, { status: 500 });
